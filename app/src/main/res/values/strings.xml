@@ -1,9 +1,15 @@
 <resources>
-    <string name="app_name">The Movie DB</string>
+    <string name="app_name">Cinemax</string>
     <string name="no_internet_connection">No Internet Connection</string>
     <string name="retry">Retry</string>
     <string name="play">Play</string>
     <string name="story_line">Story Line</string>
     <string name="review">Review</string>
     <string name="video">Video</string>
+
+    <string name="text_something_wrong_happen_title">Something Went Wrong</string>
+    <string name="text_something_wrong_happen_description">
+        The loading process has not been successful. Please try again.
+    </string>
+    <string name="text_retry">Try Again</string>
 </resources>

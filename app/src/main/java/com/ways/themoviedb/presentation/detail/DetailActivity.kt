@@ -2,12 +2,12 @@ package com.ways.themoviedb.presentation.detail
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.squareup.picasso.Picasso
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.ways.themoviedb.BuildConfig
 import com.ways.themoviedb.R
 import com.ways.themoviedb.data.remote.response.movie.MovieDetailResponse
@@ -18,6 +18,7 @@ import com.ways.themoviedb.databinding.ActivityDetailBinding
 import com.ways.themoviedb.presentation.detail.adapter.ReviewAdapter
 import com.ways.themoviedb.presentation.detail.adapter.VideoAdapter
 import com.ways.themoviedb.presentation.detail.viewModel.DetailViewModel
+import com.ways.themoviedb.presentation.utils.showBottomSheet
 import com.ways.themoviedb.presentation.videoPlayer.VideoPlayerActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlin.math.roundToInt
@@ -40,7 +41,7 @@ class DetailActivity : AppCompatActivity() {
 
     private fun initObserver() {
         viewModel.errorState.observe(this) {
-            Toast.makeText(applicationContext, "Error $it", Toast.LENGTH_SHORT).show()
+            setupError(it)
         }
         viewModel.loadingState.observe(this) {
             setupLoadingView(it)
@@ -56,6 +57,14 @@ class DetailActivity : AppCompatActivity() {
         }
     }
 
+    private fun setupError(error: String) {
+        showBottomSheet(
+            title = getString(R.string.text_something_wrong_happen_title),
+            description = error,
+            layoutInflater = layoutInflater,
+        )
+    }
+
     private fun setupLoadingView(loadState: LoaderState) {
         with(binding) {
             loadingView.isVisible = loadState is LoaderState.ShowLoading
@@ -66,14 +75,16 @@ class DetailActivity : AppCompatActivity() {
         with(binding) {
             fabBack.setOnClickListener { onBackPressedDispatcher.onBackPressed() }
 
-            Picasso.with(applicationContext)
+            Glide.with(applicationContext)
                 .load(BuildConfig.BASE_IMG_URL + data.backdropPath)
                 .placeholder(R.color.background_soft)
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(ivBackground)
 
-            Picasso.with(applicationContext)
+            Glide.with(applicationContext)
                 .load(BuildConfig.BASE_IMG_URL + data.posterPath)
                 .placeholder(R.color.background_soft)
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(ivPoster)
 
             tvTitle.text = data.title

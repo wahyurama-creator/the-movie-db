@@ -5,7 +5,8 @@ import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.squareup.picasso.Picasso
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.ways.themoviedb.BuildConfig
 import com.ways.themoviedb.R
 import com.ways.themoviedb.data.remote.response.movie.MovieDetailResponse
@@ -46,9 +47,10 @@ class MoviePagingAdapter :
                 tvGenre.text = data.releaseDate
                 tvRating.text = data.voteAverage.toString()
 
-                Picasso.with(root.context)
+                Glide.with(root.context)
                     .load(BuildConfig.BASE_IMG_URL + data.backdropPath)
                     .placeholder(R.color.background_soft)
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .into(ivPoster)
 
                 root.setOnClickListener { onContentClickListener?.let { it1 -> it1(data) } }

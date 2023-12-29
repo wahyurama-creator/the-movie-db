@@ -56,23 +56,24 @@ dependencies {
 
     val coroutineAndroidVersion = "1.7.3"
     val coroutineCoreVersion = "1.7.3"
-    val daggerHiltVersion = "2.48"
-    val datastoreVersion = "1.1.0-alpha06"
+    val daggerHiltVersion = "2.49"
+    val datastoreVersion = "1.1.0-alpha07"
     val fragmentKtxVersion = "1.6.2"
+    val glideVersion = "4.16.0"
     val kotlinCoroutineAdapter = "0.9.2"
     val lifecycleVersion = "2.6.2"
     val loggingInterceptorVersion = "5.0.0-alpha.7"
     val lottieVersion = "6.1.0"
-    val navVersion = "2.7.5"
+    val navVersion = "2.7.6"
     val pagingVersion = "3.2.1"
     val retrofitVersion = "2.9.0"
-    val roomVersion = "2.6.0"
+    val roomVersion = "2.6.1"
     val timberVersion = "5.0.1"
     val videoPlayerVersion = "12.1.0"
 
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
-    implementation("com.google.android.material:material:1.10.0")
+    implementation("com.google.android.material:material:1.11.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
 
     //testing
@@ -84,7 +85,9 @@ dependencies {
 
     //view
     implementation("com.airbnb.android:lottie:${lottieVersion}")
-    implementation("com.squareup.picasso:picasso:2.5.2")
+    implementation("com.github.bumptech.glide:glide:${glideVersion}")
+    ksp("com.github.bumptech.glide:compiler:${glideVersion}")
+
 
     //logging
     implementation("com.jakewharton.timber:timber:${timberVersion}")

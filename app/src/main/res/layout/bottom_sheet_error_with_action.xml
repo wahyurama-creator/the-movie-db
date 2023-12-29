@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/background_soft"
+    android:elevation="24dp"
+    android:orientation="vertical">
+
+    <com.google.android.material.divider.MaterialDivider
+        android:id="@+id/view"
+        android:layout_width="75dp"
+        android:layout_height="3dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="12sp"
+        android:backgroundTint="@color/white_grey" />
+
+    <TextView
+        android:id="@+id/tvErrorTitle"
+        style="@style/TextViewExtraBold"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginTop="32dp"
+        android:gravity="center"
+        android:text="@string/text_something_wrong_happen_title"
+        android:textColor="@color/red_primary"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/tvErrorDescription"
+        style="@style/TextViewMedium"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="24dp"
+        android:text="@string/text_something_wrong_happen_description"
+        android:textAlignment="center"
+        android:textColor="@color/white_grey" />
+
+</LinearLayout>

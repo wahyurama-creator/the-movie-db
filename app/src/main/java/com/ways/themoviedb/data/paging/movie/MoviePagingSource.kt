@@ -9,7 +9,8 @@ import java.io.IOException
 import javax.inject.Inject
 
 class MoviePagingSource @Inject constructor(
-    private val apiService: ApiService
+    private val apiService: ApiService,
+    private val genre: String
 ) : PagingSource<Int, MovieDetailResponse>() {
 
     override fun getRefreshKey(state: PagingState<Int, MovieDetailResponse>): Int? {
@@ -19,7 +20,7 @@ class MoviePagingSource @Inject constructor(
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, MovieDetailResponse> {
         val pageIndex = params.key ?: 1
         return try {
-            val response = apiService.getMovieList(page = pageIndex)
+            val response = apiService.getMovieList(page = pageIndex, genre = genre)
             val responseData = mutableListOf<MovieDetailResponse>()
             val data = response.body()?.results ?: emptyList()
             val totalPage = response.body()?.totalPages ?: 0

@@ -16,7 +16,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TheMovieDB"
         tools:targetApi="31">
+        <activity
+            android:name=".presentation.splash.SplashScreenActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".presentation.videoPlayer.VideoPlayerActivity"
             android:configChanges="orientation|keyboardHidden|screenSize|uiMode|fontScale|screenLayout|locale|density"
@@ -28,14 +36,7 @@
         <activity
             android:name=".presentation.main.MainActivity"
             android:configChanges="orientation|keyboardHidden|screenSize|uiMode|fontScale|screenLayout|locale|density"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-
+            android:exported="true" />
     </application>
 
 </manifest>

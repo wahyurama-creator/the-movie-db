@@ -5,7 +5,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.squareup.picasso.Picasso
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.ways.themoviedb.BuildConfig
 import com.ways.themoviedb.R
 import com.ways.themoviedb.data.remote.response.video.VideoResponse
@@ -56,9 +57,10 @@ class VideoAdapter : RecyclerView.Adapter<VideoAdapter.ViewHolder>() {
             with(binding) {
                 val thumbnail =
                     BuildConfig.BASE_YOUTUBE_THUMBNAIL_URL + data.key + BuildConfig.BASE_YOUTUBE_THUMBNAIL_URL_ENDPOINT
-                Picasso.with(root.context)
+                Glide.with(root.context)
                     .load(thumbnail)
                     .placeholder(R.color.grey_dark)
+                    .diskCacheStrategy((DiskCacheStrategy.ALL))
                     .into(ivPoster)
 
                 ivPlay.setOnClickListener { onContentClickListener?.let { it1 -> it1(data) } }
